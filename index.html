@@ -14,16 +14,13 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: rgb(6, 6, 6);
             color: white;
-            background-image: url('/img2025fundo.jpg'); 
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         /* HEADER STYLES */
@@ -40,7 +37,7 @@
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
             transition: all 0.3s ease;
-            
+            backdrop-filter: blur(10px);
         }
         
         header.scrolled {
@@ -51,6 +48,14 @@
         .logo {
             display: flex;
             align-items: center;
+            gap: 10px;
+        }
+        
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
         }
         
         .logo img {
@@ -73,33 +78,37 @@
             padding: 0;
             margin: 0;
             display: flex;
+            gap: 20px;
         }
         
         nav ul li {
-            margin: 0 95px;
+            margin: 0;
         }
         
         nav ul li a {
             color: white;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             text-transform: uppercase;
-            font-size: 16px;
+            font-size: 15px;
             letter-spacing: 1px;
             position: relative;
-            padding: 5px 0;
+            padding: 8px 15px;
             transition: color 0.3s ease;
+            border-radius: 5px;
         }
         
         nav ul li a:hover {
             color: #ffcccc;
+            background-color: rgba(255, 255, 255, 0.1);
         }
         
         nav ul li a::after {
             content: '';
             position: absolute;
-            bottom: -2px;
-            left: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0;
             height: 2px;
             background-color: #ffcccc;
@@ -107,29 +116,30 @@
         }
         
         nav ul li a:hover::after {
-            width: 100%;
+            width: 80%;
         }
         
         .orcamento {
-            background-color: #a83232;
+            background: linear-gradient(135deg, #a83232 0%, #cc3939 100%);
             color: rgb(255, 255, 255);
             border: none;
-            padding: 7px 20px;
+            padding: 10px 25px;
             cursor: pointer;
             border-radius: 30px;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(168, 50, 50, 0.4);
             text-decoration: none;
             display: inline-block;
+            white-space: nowrap;
         }
         
         .orcamento:hover {
-            background-color: #cc3939;
+            background: linear-gradient(135deg, #cc3939 0%, #e64a4a 100%);
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 6px 20px rgba(168, 50, 50, 0.6);
         }
 
         /* Menu Hamburguer para responsividade */
@@ -137,422 +147,146 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
         }
 
         .menu-toggle span {
             width: 30px;
             height: 3px;
             background-color: white;
-            margin: 3px 0;
             transition: all 0.3s ease;
+            border-radius: 3px;
         }
 
-        /* HERO SECTION */
-        .hero {
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Banner section com vídeo */
+        .produto-banner {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            padding-top: 80px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .hero h1 {
-            font-size: 50px;
-            margin-bottom: 10px;
-        }
-
-        .hero h2 {
-            font-size: 30px;
-            margin-bottom: 30px;
-        }
-
-        .buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .buttons button {
-            background-color: #800000;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 10px;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            color: white;
-            font-size: 16px;
-            min-width: 180px;
-        }
-
-        .buttons button a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-
-        .buttons button:hover {
-            background-color: #fcfcfcf9;
-            transform: scale(1.05);
-            color: #df1f1f;
-            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
-        }
-
-        .buttons button:hover a {
-            color: #df1f1f;
-        }
-
-        /* MAIN CONTENT */
-        main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            padding: 0 20px;
-            background: url("./src/imagemfundohome.jpg") center/cover fixed no-repeat;
-            /* background: url("./src/imagemfundohome.jpg") center/cover fixed no-repeat; */
-        }
-
-        /* FOOTER STYLES */
-        footer {
-            width: 100%;
-            background-color: #8B0000; /* Vermelho escuro */
-            color: white;
-            margin-top: auto;
-            
-        }
-
-        .footer-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 40px;
-        }
-
-        /* Responsividade */
-        @media (max-width: 992px) {
-            nav ul li {
-                margin: 0 40px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-            }
-
-            nav {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                background-color: rgba(128, 0, 0, 0.95);
-                width: 100%;
-                display: none;
-                padding: 20px 0;
-            }
-
-            nav.active {
-                display: block;
-            }
-
-            nav ul {
-                flex-direction: column;
-            }
-
-            nav ul li {
-                margin: 10px 0;
-                text-align: center;
-            }
-
-            .footer-content {
-                flex-direction: column;
-            }
-            
-            .footer-logo-section, .quick-links, .contact-section, .sales-section {
-                width: 100%;
-                margin-bottom: 30px;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <!-- HEADER -->
-    <header>
-        <div class="logo">
-            <a href="./Home.html"</a>
-            <img src="./src/logo.superior.png" alt="Logo CRIFER"><img src="./src/frame2.png" alt=" CRIFER">
-            </a>
-        </div>
-        
-        <div class="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <nav>
-            <ul>
-       <li><a href="#Produtos">Produto</a></li>
-                <li><a href="./Historia.html">Sobre nós</a></li>
-                <li><a href="./Historia.html#História">História</a></li>
-               
-            </ul>
-        </nav>
-        <a href="https://wa.me/5516996450237?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento" class="orcamento">Fazer Orçamento</a>
-    </header>
-
-    <!-- MAIN CONTENT -->
-    <main>
-        <section class="hero">
-            <h1>
-                <img src="./src/Frame 1321316176.svg" alt="Logo CRIFER">
-                <img src="./src/frame2.png" alt="Logo CRIFER">
-            </h1>
-            <h2>
-                <img src="./src/FRAME.MEIO.png" alt="Logo CRIFER">
-            </h2>
-            <div class="buttons">
-                <button class="contact"><a href="https://wa.me/5516996450237?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento">(16) 99645 - 0237</a></button>
-                <button class="products"><a href="#Produtos">NOSSOS PRODUTOS</a></button>
-                <button class="about"><a href="./Historia.html">SOBRE NÓS</a></button>
-            </div>
-        </section>
-        
-        <!-- Aqui você pode adicionar o carrossel de produtos ou outros elementos -->
-        <div id="productCarousel" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <!-- Itens do carrossel serão adicionados aqui -->
-            </div>
-        </div>
-    </main>
-
- 
-
-<!-- Estilos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-           
+            margin-top: 80px;
             color: white;
             text-align: center;
-            background-image: url('/api/placeholder/1920/1080');
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
-            height: 100vh;
-            width: 100vw;
-            overflow-x: hidden;
+            padding: 0 2rem;
         }
-        
-       /* HEADER STYLES */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: rgba(128, 0, 0, 0.95);
-            padding: 15px 5%;
-            position: fixed;
+
+        .video-banner {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            background: #000;
         }
-        
-        header.scrolled {
-            padding: 10px 5%;
-            background-color: rgba(128, 0, 0, 1);
-        }
-        
-        .logo {
+
+        .video-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             display: flex;
             align-items: center;
-        }
-        
-        .logo img {
-            height: 50px;
-            transition: height 0.3s ease;
-        }
-        
-        header.scrolled .logo img {
-            height: 40px;
-        }
-        
-        nav {
-            flex-grow: 1;
-            display: flex;
             justify-content: center;
         }
-        
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
+
+        .video-fallback img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
         }
-        
-        nav ul li {
-            margin: 0 95px;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 16px;
-            letter-spacing: 1px;
+
+        .conteudo-banner {
             position: relative;
-            padding: 5px 0;
-            transition: color 0.3s ease;
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 1s ease-out;
         }
-        
-        nav ul li a:hover {
-            color: #ffcccc;
+
+        .conteudo-banner h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+            color: #ffffff;
         }
-        
-        nav ul li a::after {
-            content: '';
+
+        .conteudo-banner p {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+            color: #f0f0f0;
+        }
+
+        .produto-banner::after {
+            content: "";
             position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #ffcccc;
-            transition: width 0.3s ease;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%);
+            z-index: 1;
         }
-        
-        nav ul li a:hover::after {
-            width: 100%;
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
-        .orcamento {
-            background-color: #a83232;
-            color: rgb(255, 255, 255);
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 30px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .orcamento:hover {
-            background-color: #cc3939;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-        }
-        
-        /* Banner section */
-.produto-banner {
-    position: relative;
-    height: 93vh;
-    width: 115%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 80px;
-    color: white;
-    text-align: center;
-    padding: 0 2rem;
-    font-size: 1.8rem;
 
-    /* nova borda */
-    border: 2px solid #ffffffe2;  /* troque #ff6600 pela cor desejada */
-    border-radius: 8px;         /* opcional: cantos arredondados */
-}
-
-
-/* vídeo visível e ocupando toda a área */
-.video-banner {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* conteúdo por cima do vídeo */
-.conteudo-banner {
-    position: absolute;
-    z-index: 1;
-    padding: 1rem;
-    color: white;
-}
-
-/* opcional: camada escura por cima do vídeo para contraste */
-.produto-banner::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5); /* camada escura */
-    z-index: 0;
-}
-        
-        .banner-content {
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-        }
-        
-        
         /* Product grid section */
         .produtos-grid {
             padding: 5rem 5%;
             max-width: 1400px;
             margin: 0 auto;
             width: 100%;
+            background: rgba(0, 0, 0, 0.7);
         }
         
         .produtos-grid h2 {
-            font-size: 2.2rem;
-            margin-bottom: 2.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 3rem;
             position: relative;
+            text-align: center;
+            font-weight: 700;
         }
         
         .produtos-grid h2::after {
             content: '';
             display: block;
-            width: 80px;
+            width: 100px;
             height: 4px;
-            background-color: #800000;
+            background: linear-gradient(90deg, #800000, #cc3939);
             position: absolute;
-            bottom: -10px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
             border-radius: 2px;
@@ -560,30 +294,33 @@
         
         .produto-container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
-            margin-top: 40px;
+            margin-top: 50px;
         }
         
-        /* Product box style */
         .produto-box {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
             width: 100%;
-           
             text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
         
         .produto-box:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(128, 0, 0, 0.5);
+            border-color: rgba(128, 0, 0, 0.5);
         }
         
         .produto-imagem {
             height: 250px;
             overflow: hidden;
+            background: rgba(0, 0, 0, 0.3);
         }
         
         .produto-imagem img {
@@ -594,342 +331,476 @@
         }
         
         .produto-box:hover .produto-imagem img {
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
         
         .produto-box h3 {
-            padding: 15px;
+            padding: 20px;
             font-size: 1.3rem;
             color: white;
+            font-weight: 600;
         }
         
         /* Call to action section */
         .solicitar-orcamento {
-            background-color: rgba(0, 0, 0, 0.914);
-            padding: 4rem 5%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(20, 20, 20, 0.95) 100%);
+            padding: 5rem 5%;
             text-align: center;
-            margin: 2rem 0;
-            width: 108%;
+            margin: 3rem 0;
+            width: 100%;
+            border-top: 2px solid rgba(128, 0, 0, 0.5);
+            border-bottom: 2px solid rgba(128, 0, 0, 0.5);
         }
         
         .orcamento-texto {
             max-width: 900px;
-            margin: 0 auto;
+            margin: 0 auto 2rem;
         }
         
         .orcamento-texto h2 {
-            font-size: 2rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             margin-bottom: 1rem;
+            font-weight: 700;
         }
         
         .orcamento-texto p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2vw, 1.3rem);
             margin-bottom: 2rem;
+            line-height: 1.6;
+            color: #e0e0e0;
         }
         
         .btn-orcamento {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background-color: #25d366;
+            background: linear-gradient(135deg, #25d366 0%, #20ba5a 100%);
             color: white;
-            padding: 15px 30px;
+            padding: 18px 40px;
             font-size: 1.2rem;
             border-radius: 50px;
             text-decoration: none;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            font-weight: 600;
         }
         
         .btn-orcamento:hover {
-            background-color: #1ea952;
+            background: linear-gradient(135deg, #20ba5a 0%, #1ea952 100%);
             transform: scale(1.05);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
         }
         
         .btn-orcamento i {
-            margin-right: 8px;
+            margin-right: 10px;
+            font-size: 1.3rem;
         }
 
+        /* MAIN CONTENT */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 0;
+            background: url("./src/imagemfundohome.jpg") center/cover fixed no-repeat;
+        }
 
+        /* FOOTER STYLES */
+        footer {
+            width: 100%;
+            background: linear-gradient(135deg, #800000 0%, #8B0000 100%);
+            color: white;
+            margin-top: auto;
+        }
 
-        
-/* Estilos melhorados para o rodapé */
-footer {
-    background-color: #800000;
-    color: #fff;
-    padding: 20px 0 20px;
-    width: 100%;
-}
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
 
-.container {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
 
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 30px;
-    gap: 40px;
-}
+        .footer-logo {
+            flex: 1;
+            min-width: 250px;
+        }
 
-/* Estilo melhorado para o logo e descrição */
-.footer-logo {
-    flex: 1;
-    max-width: 250px;
-}
+        .footer-logo img {
+            width: 210px;
+            height: auto;
+            max-height: 100px;
+            margin-bottom: 15px;
+            object-fit: contain;
+        }
 
-.footer-logo img {
-    width: 210px;
-    height: 100px;
-    max-height: 100px;
-    margin-bottom: 10px;
-    object-fit: contain;
-    margin-left: -20px;
-}
+        .footer-logo p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #f1f1f1;
+            font-size: 0.95rem;
+        }
 
-.footer-logo p {
-    margin-bottom: 15px;
-    line-height: 1.6;
-    color: #f1f1f1;
-    font-size: 0.95rem;
-}
+        .social-container {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-start;
+            margin-top: 15px;
+        }
 
-/* Ícones sociais melhorados */
-.social-container {
-    display: flex;
-    gap: 12px;
-    justify-content: flex-start;
-    margin-top: 15px;
-    
-}
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #800000;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
 
-.social-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background-color: #ffffff;
-    margin-left: 35 -20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #800000;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    
-}
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background-color: #f8f8f8;
+        }
 
-.social-icon:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    background-color: #f8f8f8;
-    
-}
+        .social-icon svg {
+            width: 22px;
+            height: 22px;
+        }
 
-.social-icon svg {
-    width: 22px;
-    height: 22px;
-    
-}
+        .footer-links, 
+        .contact-info, 
+        .central {
+            flex: 1;
+            min-width: 200px;
+            padding: 0 15px;
+        }
 
-/* Colunas principais do rodapé */
-.footer-links, 
-.contact-info, 
-.central {
-    flex: 1;
-    padding: 0 15px;
-}
+        .footer-links h3,
+        .contact-info h3, 
+        .central h3 {
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
 
-/* Títulos das seções */
-.footer-links h3{
-padding-left: 122px;
-font-weight: bold;
-font-size: 1.2rem;
-margin-bottom: 30px;
-position: relative;
-}
+        .footer-links h3::after,
+        .contact-info h3::after,
+        .central h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 2px;
+        }
 
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
 
-.contact-info h3, 
-.central h3 {
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    position: relative;
-     
-}
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
 
-.footer-links h3::after,
-.contact-info h3::after,
-.central h3::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 30px;
-    height: 0px;
-    background-color: #000000;
-}
+        .footer-links ul li a,
+        .contact-info a,
+        .central a {
+            color: #ffffff !important;
+            text-decoration: none !important;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            display: inline-block;
+        }
 
-/* Lista de links melhorada */
-.footer-links ul {
-    list-style: none;
-    padding: 0;
-    
-}
+        .footer-links ul li a:hover,
+        .contact-info a:hover,
+        .central a:hover {
+            color: #ffcccc !important;
+            padding-left: 5px;
+        }
 
-.footer-links ul li {
-    margin-bottom: 12px;
-    padding-left: 140px;
-}
+        .contact-info p,
+        .central p {
+            margin-bottom: 12px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
 
-/* Links uniformizados */
-.footer-links ul li a,
-.footer-links ul li a:link,
-.footer-links ul li a:visited,
-.footer-links ul li a:active,
-.contact-info a,
-.central a {
-    color: #ffffff !important;
-    text-decoration: none !important;
-    transition: all 0.3s ease;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    
-}
+        .footer-bottom {
+            padding: 25px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+            margin-top: 20px;
+        }
 
-.footer-links ul li a:hover,
-.contact-info a:hover,
-.central a:hover {
-    color: #f1f1f1 !important;
-    text-decoration: none !important;
-    padding-left: 5px;
-}
+        .footer-bottom p {
+            margin: 0;
+            color: #f1f1f1;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
 
-/* Informações de contato */
-.contact-info p,
-.central p {
-    margin-bottom: 10px;
-    color: #ffffff;
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
+        /* WhatsApp Button */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #25D366 0%, #20BA5A 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 999999;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
 
-/* Rodapé inferior */
-.footer-bottom {
-    padding: 20px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    text-align: center;
-    margin-top: 20px;
-}
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+        }
 
-.footer-bottom p {
-    margin: 0;
-    color: #f1f1f1;
-    font-size: 0.9rem;
-}
+        .whatsapp-button svg {
+            width: 35px;
+            height: 35px;
+            fill: white;
+        }
 
-/* Responsividade melhorada */
-@media (max-width: 992px) {
-    .footer-content {
-        gap: 30px;
-    }
-    
-    .footer-logo {
-        max-width: 250px;
-    }
-    
-    .footer-logo img {
-        width: 180px;
-        height: 85px;
-    }
-}
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 25px rgba(37, 211, 102, 0.8);
+            }
+        }
 
-@media (max-width: 768px) {
-    footer {
-        padding: 30px 0 15px;
-    }
-    
-    .container {
-        padding: 0 15px;
-    }
-    
-    .footer-content {
-        flex-direction: column;
-        gap: 25px;
-        text-align: left;
-    }
-    
-    .footer-logo,
-    .footer-links,
-    .contact-info,
-    .central {
-        width: 100%;
-        padding: 0;
-        max-width: none;
-    }
-    
-    .footer-logo {
-        text-align: center;
-    }
-    
-    .social-container {
-        justify-content: center;
-    }
-    
-    .footer-links h3,
-    .contact-info h3,
-    .central h3 {
-        font-size: 1.1rem;
-        margin-bottom: 15px;
-    }
-}
+        /* Responsividade */
+        @media (max-width: 992px) {
+            nav ul li {
+                margin: 0 20px;
+            }
 
-@media (max-width: 480px) {
-    .footer-logo img {
-        width: 150px;
-        height: 70px;
-    }
-    
-    .social-icon {
-        width: 38px;
-        height: 38px;
-    }
-    
-    .social-icon svg {
-        width: 20px;
-        height: 20px;
-    }
-}
-        
-       
+            .produto-container {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 12px 20px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: rgba(128, 0, 0, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 80px 0 20px;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+
+            nav.active {
+                transform: translateX(0);
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+            }
+
+            nav ul li {
+                margin: 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 15px 20px;
+                font-size: 18px;
+            }
+
+            .orcamento {
+                padding: 8px 20px;
+                font-size: 14px;
+            }
+
+            .produto-banner {
+                height: 70vh;
+                margin-top: 70px;
+            }
+
+            .conteudo-banner {
+                padding: 1.5rem;
+            }
+
+            .produtos-grid {
+                padding: 3rem 3%;
+            }
+
+            .produto-container {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer-logo,
+            .footer-links,
+            .contact-info,
+            .central {
+                width: 100%;
+                padding: 0;
+                text-align: center;
+            }
+
+            .footer-links h3,
+            .contact-info h3,
+            .central h3 {
+                text-align: center;
+            }
+
+            .footer-links h3::after,
+            .contact-info h3::after,
+            .central h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-links ul li {
+                padding-left: 0;
+            }
+
+            .social-container {
+                justify-content: center;
+            }
+
+            .whatsapp-button {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .whatsapp-button svg {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                height: 35px;
+            }
+
+            .produto-container {
+                grid-template-columns: 1fr;
+            }
+
+            .solicitar-orcamento {
+                padding: 3rem 3%;
+            }
+
+            .btn-orcamento {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Conteúdo Principal -->
-    <main>
-        <!-- Banner do Produto -->
-       <section class="produto-banner">
-  <video class="video-banner" autoplay muted loop playsinline>
-    <source src="./src/video2.mp4" type="video/mp4" />
-    Seu navegador não suporta vídeos HTML5.
-  </video>
-  <div class="conteudo-banner">
-     <h1>Soluções em Ferragem Armada</h1>
-      <p>Projetos inovadores, eficientes e personalizados para sua necessidade</p>
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <a href="./index.html">
+                <img src="./src/logo.superior.png" alt="Logo CRIFER">
+                <img src="./src/frame2.png" alt="CRIFER">
+            </a>
+        </div>
+        
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <nav id="nav">
+            <ul>
+                <li><a href="#Produtos">Produtos</a></li>
+                <li><a href="./Historia.html">Sobre nós</a></li>
+                <li><a href="./Historia.html#historia">História</a></li>
+            </ul>
+        </nav>
+        
+        <a href="https://wa.me/5516996450237?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento" class="orcamento">Fazer Orçamento</a>
+    </header>
 
-  </div>
-</section>
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- Banner do Produto com Vídeo -->
+        <section class="produto-banner">
+            <video class="video-banner" id="videoBanner" autoplay muted loop playsinline preload="auto">
+                <source src="./src/video2.mp4" type="video/mp4">
+                <source src="./src/video2.webm" type="video/webm">
+                Seu navegador não suporta vídeos HTML5.
+            </video>
+            <div class="video-fallback" id="videoFallback">
+                <img src="./src/imagemfundohome.jpg" alt="Background">
+            </div>
+            <div class="conteudo-banner">
+                <h1>Soluções em Ferragem Armada</h1>
+                <p>Projetos inovadores, eficientes e personalizados para sua necessidade</p>
+            </div>
+        </section>
+
         <!-- Produtos em Destaque -->
-        <section class="produtos-grid">
-<DIV  ID="Produtos">        
-            <h2>Nossos Produtos</h2>  
-</DIV>  
+        <section class="produtos-grid" id="Produtos">
+            <h2>Nossos Produtos</h2>
             <div class="produto-container">
-                <!-- Produto 1 -->
                 <div class="produto-box">
                     <div class="produto-imagem">
                         <img src="./src/produto1.png" alt="Arames">
@@ -937,7 +808,6 @@ position: relative;
                     <h3>Arames</h3>
                 </div>
 
-                <!-- Produto 2 -->
                 <div class="produto-box">
                     <div class="produto-imagem">
                         <img src="./src/produto2.png" alt="Tela de Radier">
@@ -945,7 +815,6 @@ position: relative;
                     <h3>Tela de Radier</h3>
                 </div>
 
-                <!-- Produto 3 -->
                 <div class="produto-box">
                     <div class="produto-imagem">
                         <img src="./src/produto3.png" alt="Pregos">
@@ -953,7 +822,6 @@ position: relative;
                     <h3>Pregos</h3>
                 </div>
 
-                <!-- Produto 4 -->
                 <div class="produto-box">
                     <div class="produto-imagem">
                         <img src="./src/produto4.png" alt="Espaçadores">
@@ -961,7 +829,6 @@ position: relative;
                     <h3>Espaçadores</h3>
                 </div>
                 
-                <!-- Produto 5 (Adicionado) -->
                 <div class="produto-box">
                     <div class="produto-imagem">
                         <img src="./src/produto5.png" alt="Sapata">
@@ -969,7 +836,6 @@ position: relative;
                     <h3>Sapata</h3>
                 </div>
                 
-                <!-- Produto 6 (Adicionado) -->
                 <div class="produto-box">
                     <div class="produto-imagem">
                         <img src="./src/produto6.png" alt="Treliças">
@@ -977,7 +843,6 @@ position: relative;
                     <h3>Treliças</h3>
                 </div>
                 
-                <!-- Produto 7 (Adicionado) -->
                 <div class="produto-box">
                     <div class="produto-imagem">
                         <img src="./src/produto7.png" alt="Vergalhões">
@@ -985,7 +850,6 @@ position: relative;
                     <h3>Vergalhões</h3>
                 </div>
                 
-                <!-- Produto 8 (Adicionado) -->
                 <div class="produto-box">
                     <div class="produto-imagem">
                         <img src="./src/produto8.png" alt="Vigas/Colunas">
@@ -1006,145 +870,109 @@ position: relative;
             </a>
         </section>
     </main>
-<!-- Rodapé Melhorado -->
-<footer>
-    <div class="container">
-        <div class="footer-content">
-            <!-- Logo e Descrição -->
-            <div class="footer-logo">
-                <a href="./Home.html">
-                    <img src="./src/logo.inferior.png" alt="Logo CRIFER">
-               
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="./index.html">
+                        <img src="./src/logo.inferior.png" alt="Logo CRIFER">
+                    </a>
+                    <div class="social-container">
+                        <a href="https://wa.me/5516996450237?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento" 
+                           class="social-icon" 
+                           title="WhatsApp" 
+                           target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:vendas.crifer@gmail.com" 
+                           class="social-icon" 
+                           title="Email" 
+                           target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path fill="currentColor" d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
                 
-                <!-- Ícones Sociais -->
-                <div class="social-container">
-                    <!-- WhatsApp -->
-                    <a href="https://wa.me/5516996450237?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento" 
-                       class="social-icon" 
-                       title="WhatsApp" 
-                       target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                            <path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-                        </svg>
-                    </a>
-                    
-                    <!-- Email -->
-                    <a href="mailto:vendas.crifer@gmail.com" 
-                       class="social-icon" 
-                       title="Email" 
-                       target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                            <path fill="currentColor" d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/>
-                        </svg>
-                    </a>
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="./index.html">Página Inicial</a></li>
+                        <li><a href="./index.html#Produtos">Produtos</a></li>
+                        <li><a href="./Historia.html">Sobre Nós</a></li>
+                    </ul>
+                </div>
+                
+                <div class="contact-info">
+                    <h3>Contato</h3>
+                    <p>
+                        <a href="https://wa.me/5516996450237" target="_blank" title="WhatsApp">
+                            (16) 9.9645-0237
+                        </a>
+                    </p>
+                    <p>
+                        <a href="https://wa.me/5516993678475" target="_blank" title="WhatsApp">
+                            (16) 9.9367-8475
+                        </a>
+                    </p>
+                    <p>
+                        <a href="mailto:vendas.crifer@gmail.com" title="Enviar Email">
+                            vendas.crifer@gmail.com
+                        </a>
+                    </p>
+                </div>
+                
+                <div class="central">
+                    <h3>Central de Vendas</h3>
+                    <p>
+                        <a href="https://maps.google.com/?q=Av.+Ettore+e+Aurora+Coraucci,+610,+Jardim+Alexandre+Balbo,+Ribeirão+Preto+-+SP" 
+                           target="_blank" 
+                           title="Ver no Google Maps">
+                            Av. Ettore e Aurora Coraucci, 610
+                        </a>
+                    </p>
+                    <p>
+                        <a href="https://maps.google.com/?q=Jardim+Alexandre+Balbo,+Ribeirão+Preto+-+SP" 
+                           target="_blank" 
+                           title="Ver no Google Maps">
+                            Jardim Alexandre Balbo
+                        </a>
+                    </p>
+                    <p>
+                        <a href="https://maps.google.com/?q=Ribeirão+Preto+-+SP" 
+                           target="_blank" 
+                           title="Ver no Google Maps">
+                            Ribeirão Preto - SP
+                        </a>
+                    </p>
+                    <p><strong>CEP:</strong> 14096-160</p>
                 </div>
             </div>
             
-            <!-- Links Rápidos -->
-            <div class="footer-links">
-                <h3>Links Rápidos</h3>
-                <ul>
-                    <li><a href="./Home.html">Página Inicial</a></li>
-                    <li><a href="./Home.html#Produtos">Produtos</a></li>
-                    <li><a href="./Historia.html">Sobre Nós</a></li>
-                   
-                </ul>
-            </div>
-            
-            <!-- Informações de Contato -->
-            <div class="contact-info">
-                <h3>Contato</h3>
+            <div class="footer-bottom">
                 <p>
-                    <a href="https://wa.me/5516996450237" 
-                       target="_blank" 
-                       title="WhatsApp">
-                         (16) 9.9645-0237
-                    </a>
+                    © 2024 CRIFER ARAMES E FERRAGEM ARMADAS<br>
+                    <strong>CNPJ:</strong> 52.959.907/0001-86
                 </p>
-                <p>
-                    <a href="https://wa.me/5516993678475" 
-                       target="_blank" 
-                       title="WhatsApp">
-                         (16) 9.9367-8475
-                    </a>
-                </p>
-                <p>
-                    <a href="mailto:vendas.crifer@gmail.com" 
-                       title="Enviar Email">
-                         vendas.crifer@gmail.com
-                    </a>
-                </p>
-            </div>
-            
-            <!-- Central de Vendas -->
-            <div class="central">
-                <h3>Central de Vendas</h3>
-                <p>
-                    <a href="https://maps.google.com/?q=Av.+Ettore+e+Aurora+Coraucci,+610,+Jardim+Alexandre+Balbo,+Ribeirão+Preto+-+SP" 
-                       target="_blank" 
-                       title="Ver no Google Maps">
-                         Av. Ettore e Aurora Coraucci, 610
-                    </a>
-                </p>
-                <p>
-                    <a href="https://maps.google.com/?q=Jardim+Alexandre+Balbo,+Ribeirão+Preto+-+SP" 
-                       target="_blank" 
-                       title="Ver no Google Maps">
-                        Jardim Alexandre Balbo
-                    </a>
-                </p>
-                <p>
-                    <a href="https://maps.google.com/?q=Ribeirão+Preto+-+SP" 
-                       target="_blank" 
-                       title="Ver no Google Maps">
-                        Ribeirão Preto - SP
-                    </a>
-                </p>
-                <p><strong>CEP:</strong> 14096-160</p>
             </div>
         </div>
-        
-        <!-- Rodapé Inferior -->
-        <div class="footer-bottom">
-            <p>
-                © 2024 CRIFER ARAMES E FERRAGEM ARMADAS<br>
-                <strong>CNPJ:</strong> 52.959.907/0001-86<br>
-                
-            </p>
-        </div>
-    </div>
-</footer>
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AOS Script para animações ao rolar -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    
-    <script>
-        // Inicializar AOS para animações ao rolar
-        document.addEventListener('DOMContentLoaded', function() {
-            AOS.init();
-            
-            // Adicionar classe para animar textos
-            const textElements = document.querySelectorAll('.featurette-heading, .lead');
-            textElements.forEach(function(element) {
-                element.classList.add('animate-text');
-            });
-            
-            // Adicionar animação ao carousel
-            const carousel = document.getElementById('myCarousel');
-            carousel.addEventListener('slide.bs.carousel', function() {
-                const activeItem = this.querySelector('.carousel-item.active img');
-                activeItem.style.transform = 'scale(1.02)';
-                setTimeout(() => {
-                    activeItem.style.transform = 'scale(1)';
-                }, 500);
-            });
-        });
-    </script>
+    </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- JavaScript para funcionalidades interativas -->
+    <!-- Botão WhatsApp Flutuante -->
+    <a href="https://wa.me/5516996450237?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento" 
+       class="whatsapp-button" 
+       target="_blank" 
+       title="Fale conosco no WhatsApp">
+        <svg viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.386"/>
+        </svg>
+    </a>
+
     <script>
         // Script para efeito de rolagem no cabeçalho
         window.addEventListener('scroll', function() {
@@ -1157,50 +985,92 @@ position: relative;
         });
 
         // Script para menu responsivo
-        const menuToggle = document.querySelector('.menu-toggle');
-        const nav = document.querySelector('nav');
+        const menuToggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('nav');
 
-        menuToggle.addEventListener('click', function() {
-            nav.classList.toggle('active');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            });
+
+            // Fechar menu ao clicar em um link
+            const navLinks = nav.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                });
+            });
+        }
+
+        // Verificar se o vídeo existe e carregar fallback se necessário
+        const videoBanner = document.getElementById('videoBanner');
+        const videoFallback = document.getElementById('videoFallback');
+
+        if (videoBanner && videoFallback) {
+            // Inicialmente esconder o fallback
+            videoFallback.style.display = 'none';
+            
+            // Quando o vídeo carregar com sucesso, esconder o fallback
+            videoBanner.addEventListener('loadeddata', function() {
+                videoFallback.style.display = 'none';
+                videoBanner.style.display = 'block';
+            });
+
+            // Quando houver erro no vídeo, mostrar fallback
+            videoBanner.addEventListener('error', function() {
+                console.log('Vídeo não encontrado, usando imagem de fallback');
+                videoBanner.style.display = 'none';
+                videoFallback.style.display = 'flex';
+            });
+
+            // Tentar carregar o vídeo
+            videoBanner.load();
+
+            // Tentar reproduzir o vídeo
+            videoBanner.play().then(function() {
+                // Vídeo está reproduzindo, esconder fallback
+                videoFallback.style.display = 'none';
+                videoBanner.style.display = 'block';
+            }).catch(function(error) {
+                console.log('Erro ao reproduzir vídeo:', error);
+                // Se não conseguir reproduzir, mostrar fallback
+                videoBanner.style.display = 'none';
+                videoFallback.style.display = 'flex';
+            });
+
+            // Verificar após 3 segundos se o vídeo carregou
+            setTimeout(function() {
+                if (videoBanner.readyState < 2 || videoBanner.networkState === 3) {
+                    // Vídeo não carregou, mostrar fallback
+                    videoBanner.style.display = 'none';
+                    videoFallback.style.display = 'flex';
+                } else {
+                    // Vídeo carregou, esconder fallback
+                    videoFallback.style.display = 'none';
+                    videoBanner.style.display = 'block';
+                }
+            }, 3000);
+        }
+
+        // Smooth scroll para âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     </script>
-<script>
-  const video = document.querySelector('.video-banner');
-  video.playbackRate = 1.0; // velocidade: 1.0x (mais lento). Use 2.0 para 2x mais rápido.
-</script>
-
-<script src="/rodape.html"></script>
-
-  <!-- BOTÃO WHATSAPP - COPIE ESTE CÓDIGO -->
-    <a href="https://wa.me/5516996450237?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento" 
-       target="_blank" 
-       style="position: fixed !important;
-              bottom: 20px !important;
-              right: 20px !important;
-              width: 60px !important;
-              height: 60px !important;
-              background-color: #25D366 !important;
-              border-radius: 50% !important;
-              display: flex !important;
-              align-items: center !important;
-              justify-content: center !important;
-              box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
-              z-index: 999999 !important;
-              text-decoration: none !important;
-              transition: all 0.3s ease !important;"
-       onmouseover="this.style.backgroundColor='#20BA5A'; this.style.transform='scale(1.1)'"
-       onmouseout="this.style.backgroundColor='#25D366'; this.style.transform='scale(1)'">
-       
-        <!-- Ícone WhatsApp -->
-        <svg width="35" height="35" viewBox="0 0 24 24" fill="white">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.386"/>
-        </svg>
-    </a>
 </body>
 </html>
-
-
-
-
-
-      
